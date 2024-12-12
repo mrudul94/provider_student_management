@@ -1,6 +1,5 @@
 
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_application_1/model/model.dart';
 import 'package:flutter_application_1/servises/functions.dart';
 import 'package:image_picker/image_picker.dart';
@@ -48,20 +47,13 @@ class StudentProvider with ChangeNotifier {
   Future<void> pickImage() async {
     final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
-      // Handle picked image
+   
     }
   }
 
-  // Future<void> deleteStudent(int id) async {
-  //   // Delete student with provided id
-  //   await deleteStudentById(id);
-  //   // Refresh the student list
-  //   getAllStudents();
-  // }
 
   void signOut(BuildContext context) async {
-    // Perform sign out action
-    // Redirect to login screen
+    
   }
 }
 

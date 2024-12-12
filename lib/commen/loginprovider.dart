@@ -7,7 +7,7 @@ class Loginprovider extends ChangeNotifier {
   bool get isLoggedIn => _isLoggedIn;
 
   Future<void> login(String username, String password, BuildContext context) async {
-    if ((username == 'febin' && password == '0000') || (username == 'noufan' && password == '1234')) {
+    if ((username == 'admin' && password == '0000') || (username == 'user' && password == '1234')) {
       // Update login state
       _isLoggedIn = true;
       notifyListeners();
@@ -17,18 +17,18 @@ class Loginprovider extends ChangeNotifier {
       await sharedPrefs.setBool('isLoggedIn', true);
 
       // Navigate to home screen
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => ScreenHome()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => const ScreenHome()));
     } else {
       // Handle invalid login
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Login Failed'),
-          content: Text('Username or password is incorrect.'),
+          title: const Text('Login Failed'),
+          content: const Text('Username or password is incorrect.'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         ),

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/model/model.dart';
+import 'package:flutter_application_1/screens/homescreen.dart';
 import 'package:flutter_application_1/servises/functions.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -41,7 +42,7 @@ class ScreenProfile extends StatelessWidget {
               ),),
             ), // Use lowercase 'place'
             Padding(
-              padding: const EdgeInsets.only(left: 140,bottom: 15),
+              padding: const EdgeInsets.only(left: 90,bottom: 15),
               child: Text('Age   : ${student.age.toString()}',style:const TextStyle(
                fontWeight: FontWeight.w300,
                fontSize:20 
@@ -67,7 +68,7 @@ class ScreenProfile extends StatelessWidget {
     final TextEditingController phoneNumberController = TextEditingController(text: student.number);
   //   final TextEditingController phoneNumberController = TextEditingController(text: student.imagetemporary);
 
-  String? _pickedImage; // Variable to store the picked image path
+  String? pickedImage0; // Variable to store the picked image path
      
   showDialog(
     context: context,
@@ -88,7 +89,7 @@ class ScreenProfile extends StatelessWidget {
                     final pickedImage = await imagePicker.pickImage(source: ImageSource.gallery);
                     if (pickedImage != null) {
                       setState(() {
-                        _pickedImage = pickedImage.path;
+                        pickedImage0 = pickedImage.path;
                       });
                     }
                     
@@ -97,10 +98,10 @@ class ScreenProfile extends StatelessWidget {
                   label: const Text('Update Profile Picture'),
                 ),
                 // Container to display picked image
-                _pickedImage != null
+                pickedImage0 != null
                     ? Container(
                         padding:const EdgeInsets.all(8.0),
-                        child: Image.file(File(_pickedImage!)),
+                        child: Image.file(File(pickedImage0!)),
                       )
                       :Container(
                         padding:const EdgeInsets.all(8.0) ,
@@ -134,7 +135,7 @@ class ScreenProfile extends StatelessWidget {
                 age: updatedAge,
                 Place: updatedPlace,
                 number: updatedPhoneNumber,
-                imagetemporary:_pickedImage! ,
+                imagetemporary:pickedImage0! ,
                 // profilePicture: updatedProfilePicture,
               );
 
@@ -155,7 +156,7 @@ class ScreenProfile extends StatelessWidget {
 
                         },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black
+                    backgroundColor: Colors.black
                   ),
                   child:const Icon(Icons.edit),
                 ),
@@ -163,10 +164,11 @@ class ScreenProfile extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     // Confirm and delete the profile
-                  //  deleteProfile(context);
+                   deleteStudent(student.id! as int);
+                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>ScreenHome()));
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.red, // Change button color to red
+                    backgroundColor: Colors.red, // Change button color to red
                   ),
                   child:const Icon(Icons.delete),
                 ),

@@ -63,7 +63,7 @@ class ScreenAdd extends StatelessWidget {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Enter an Age';
-                        } else if (value.length > 0 && value.length > 2) {
+                        } else if (value.isNotEmpty && value.length > 2) {
                           return 'Please enter your correct age';
                         } else {
                           return null;

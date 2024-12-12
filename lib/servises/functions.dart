@@ -27,11 +27,11 @@ Future<void> addStudent(StudentModel value) async {
 }
 
 Future getallstudent() async {
-  final _values = await _db.rawQuery('SELECT * FROM student');
-  print(_values);
+  final values = await _db.rawQuery('SELECT * FROM student');
+  print(values);
   studentlistnotifair.value.clear();
 
-  _values.forEach((Map) {
+  values.forEach((Map) {
     final student = StudentModel.fromMap(Map);
     studentlistnotifair.value.add(student);
 

@@ -19,9 +19,9 @@ class ScreenHome extends StatelessWidget {
     studentProvider.getAllStudents();
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 226, 223, 223),
+      backgroundColor: const Color.fromARGB(255, 226, 223, 223),
       appBar: AppBar(
-        title: const Text("Strudends"),
+        title: const Text("Students"),
         actions: [
           IconButton(
             onPressed: () {
@@ -61,12 +61,12 @@ class ScreenHome extends StatelessWidget {
               bottomLeft: Radius.circular(25)),
         ),
         elevation: 0.00,
-        backgroundColor: Color.fromARGB(255, 154, 14, 58),
+        backgroundColor: const Color.fromARGB(255, 154, 14, 58),
       ),
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Padding(
@@ -88,9 +88,8 @@ class ScreenHome extends StatelessWidget {
                   style: TextStyle(color: Colors.black),
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(
-                      255, 242, 238, 238), // Change the background color here
-                  onPrimary: Colors.white, // Change the text color here
+                  foregroundColor: Colors.white, backgroundColor: Color.fromARGB(
+                      255, 242, 238, 238), // Change the text color here
                 ),
               ),    
             ),
@@ -128,7 +127,7 @@ class ScreenHome extends StatelessWidget {
                                 TextEditingController(text: student.Place);
                             final TextEditingController phoneNumberController =
                                 TextEditingController(text: student.number);
-                            String? _pickedImage;
+                            String? pickedImage0;
 
                             showDialog(
                               context: context,
@@ -168,7 +167,7 @@ class ScreenHome extends StatelessWidget {
                                                           ImageSource.gallery);
                                               if (pickedImage != null) {
                                                 setState(() {
-                                                  _pickedImage =
+                                                  pickedImage0 =
                                                       pickedImage.path;
                                                 });
                                               }
@@ -177,12 +176,12 @@ class ScreenHome extends StatelessWidget {
                                             label: const Text(
                                                 'Update Profile Picture'),
                                           ),
-                                          _pickedImage != null
+                                          pickedImage0 != null
                                               ? Container(
                                                   padding:
                                                       const EdgeInsets.all(8.0),
                                                   child: Image.file(
-                                                      File(_pickedImage!)),
+                                                      File(pickedImage0!)),
                                                 )
                                               : Container(
                                                   padding:
@@ -217,11 +216,11 @@ class ScreenHome extends StatelessWidget {
                                                 age: updatedAge,
                                                 Place: updatedPlace,
                                                 number: updatedPhoneNumber,
-                                                imagetemporary: _pickedImage!,
+                                                imagetemporary: pickedImage0!,
                                               );
 
                                               await updateStudent(
-                                                  student.id! as int,
+                                                  student.id!,
                                                   updatedStudent);
                                               Navigator.pop(context);
                                             }
@@ -237,6 +236,7 @@ class ScreenHome extends StatelessWidget {
                           },
                           icon: const Icon(Icons.edit),
                         ),
+                        
                       );
                     },
                   );
@@ -249,7 +249,7 @@ class ScreenHome extends StatelessWidget {
                 if (index == 1) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => StudentListScreen()),
+                    MaterialPageRoute(builder: (_) => const StudentListScreen()),
                   );
                 }
               },
